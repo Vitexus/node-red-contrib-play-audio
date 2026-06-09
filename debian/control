@@ -1,0 +1,22 @@
+Source: node-red-contrib-play-audio
+Section: javascript
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-nodejs | pkg-js-tools,
+ appstream
+Standards-Version: 4.7.0
+Homepage: https://github.com/lorentzlasson/node-red-contrib-play-audio
+Rules-Requires-Root: no
+
+Package: node-red-contrib-play-audio
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ node-red (>= 4.0)
+Description: Node-RED node for playing audio in the browser
+ A Node-RED node for playing audio in the browser via the Node-RED
+ dashboard or editor, supporting text-to-speech and raw audio buffers
+ for notification and feedback flows.

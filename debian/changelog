@@ -1,0 +1,5 @@
+node-red-contrib-play-audio (2.5.0) unstable; urgency=medium
+
+  * Initial Debian packaging of node-red-contrib-play-audio.
+
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Tue, 09 Jun 2026 13:20:00 +0200
