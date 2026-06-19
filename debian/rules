@@ -1,16 +1,27 @@
 #!/usr/bin/make -f
-# export DH_VERBOSE = 1
+export DH_VERBOSE = 1
 
-PKG := node-red-contrib-play-audio
+PKG   := node-red-contrib-play-audio
+DEST  := debian/$(PKG)/usr/share/node-red/node_modules/$(PKG)
 APPID := io.github.vitexus.node_red_contrib_play_audio
 
 %:
-	dh $@ --with nodejs
+	dh $@
 
-override_dh_install:
-	dh_install
-	install -D -m 644 debian/$(PKG).metainfo.xml \
-	    debian/$(PKG)/usr/share/metainfo/$(APPID).metainfo.xml
+override_dh_auto_build:
+
+override_dh_auto_install:
+	install -d $(DEST)
+	cp -a play-audio.js play-audio.html package.json README.md $(DEST)/
+	[ -d locales ] && cp -a locales $(DEST)/ || true
+	[ -d examples ] && cp -a examples $(DEST)/ || true
+	install -d debian/$(PKG)/usr/share/metainfo
+	install -m 644 debian/$(PKG).metainfo.xml \
+		debian/$(PKG)/usr/share/metainfo/$(APPID).metainfo.xml
 
 override_dh_auto_test:
 	appstreamcli validate --no-net debian/$(PKG).metainfo.xml; test $$? -le 3
+
+override_dh_shlibdeps:
+
+override_dh_strip:
